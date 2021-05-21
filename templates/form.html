@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<form action="/calculate">
+    <div class="row">
+        <div class="column">
+            <h1>Mark</h1>
+        </div>
+        <div class="column">
+            <h1>Weightage</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <input type="number" name="mark1" size="10">
+        </div>
+        <div class="column">
+            <input type="number" name="weightage1" size="10">
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <input type="number" name="mark2" size="10">
+        </div>
+        <div class="column">
+            <input type="number" name="weightage2" size="10">
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <input type="number" name="mark3" size="10">
+        </div>
+        <div class="column">
+            <input type="number" name="weightage3" size="10">
+        </div>
+    </div>
+    <input type="submit" value="Submit">
+</form>
