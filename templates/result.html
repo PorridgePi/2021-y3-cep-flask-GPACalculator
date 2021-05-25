@@ -1,9 +1,5 @@
+{% for i in range(numItems) %}
 <p>
-    Mark 1: {{ form["mark1"] }}, Weightage 1: {{ form["weightage1"] }}
+    Mark {{loop.index}}: {{ form["mark" ~ i] }}, Weightage {{loop.index}}: {{ form["weightage" ~ i] }}
 </p>
-<p>
-    Mark 2: {{ form["mark2"] }}, Weightage 2: {{ form["weightage2"] }}
-</p>
-<p>
-    Mark 3: {{ form["mark3"] }}, Weightage 3: {{ form["weightage3"] }}
-</p>
+{% endfor %}

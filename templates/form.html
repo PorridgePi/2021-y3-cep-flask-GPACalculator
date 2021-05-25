@@ -9,29 +9,15 @@
             <h1>Weightage</h1>
         </div>
     </div>
+    {% for i in range(numItems) %}
     <div class="row">
         <div class="column">
-            <input type="number" name="mark1" size="10">
+            <input type="number" name="mark{{i}}" size="10">
         </div>
         <div class="column">
-            <input type="number" name="weightage1" size="10">
+            <input type="number" name="weightage{{i}}" size="10">
         </div>
     </div>
-    <div class="row">
-        <div class="column">
-            <input type="number" name="mark2" size="10">
-        </div>
-        <div class="column">
-            <input type="number" name="weightage2" size="10">
-        </div>
-    </div>
-    <div class="row">
-        <div class="column">
-            <input type="number" name="mark3" size="10">
-        </div>
-        <div class="column">
-            <input type="number" name="weightage3" size="10">
-        </div>
-    </div>
+    {% endfor %}
     <input type="submit" value="Submit">
 </form>

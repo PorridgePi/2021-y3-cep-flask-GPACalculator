@@ -3,6 +3,9 @@ from flask import render_template, request
 
 app = flask.Flask(__name__)
 
+global numItems
+numItems = 5
+
 @app.route("/")
 def root():
     return render_template("index.html")
@@ -13,11 +16,11 @@ def testing():
 
 @app.route("/form")
 def form():
-    return render_template("form.html")
+    return render_template("form.html", numItems = numItems)
 
 @app.route("/calculate", methods=["POST"])
 def calculate():
-    return render_template("result.html", form=request.form)
+    return render_template("result.html", form=request.form, numItems = numItems)
 
     mark1, mark2, mark3 = float(request.form["mark1"]), float(request.form["mark2"]), float(request.form["mark3"])
 
