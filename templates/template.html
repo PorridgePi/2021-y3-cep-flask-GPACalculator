@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <title>{% block title %} Default title {% endblock %}</title>
+    </head>
+    <body>
+        <div id="container">
+            {% block heading %}
+            <h1>Default Heading</h1>
+            {% endblock %}
+
+            {% block body %}
+            {% endblock %}
+
+            {% block footer %}
+            <footer>This is the default footer</footer>
+            {% endblock %}
+             
+    </body>
+</html>
