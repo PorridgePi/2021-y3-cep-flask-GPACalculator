@@ -2,6 +2,10 @@
 
 {% block title %}GPA Calculator{% endblock %}
 
+{% block heading %}
+<h1 style="text-align:center">GPA Calculator</h1>
+{% endblock %}
+
 {% block body %}
 <form action="{{ url_for('calculate') }}" method="post">
     <div class="row">
@@ -27,3 +31,5 @@
     <input type="submit" value="Submit">
 </form>
 {% endblock %}
+
+{% block footer %}{% endblock %}

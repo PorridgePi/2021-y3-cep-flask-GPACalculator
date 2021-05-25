@@ -1,5 +1,18 @@
+{% extends "template.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block heading %}
+<h1>Results</h1>
+{% endblock %}
+
+{% block body %}
 {% for i in range((form|length / 2)|int) %}
 <p>
     Mark {{loop.index}}: {{ form["mark" ~ i] }}, Weightage {{loop.index}}: {{ form["weightage" ~ i] }}
 </p>
 {% endfor %}
+
+{% endblock %}
+
+{% block footer %}{% endblock %}
