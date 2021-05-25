@@ -77,7 +77,6 @@ def calculate():
     
     db[data["subject"]] = data
 
-
     percentage = {}
     grade = {}
     form = {}
@@ -88,7 +87,7 @@ def calculate():
             calcPercent, calcGrade = calcGPA(data)
         except ValueError:
             return render_template("error.html", error=calcGPA(data))
-        
+
         form[subject] = data
         percentage[subject] = calcPercent
         grade[subject] = calcGrade
