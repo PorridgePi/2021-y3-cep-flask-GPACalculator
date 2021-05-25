@@ -12,7 +12,12 @@
     Mark {{loop.index}}: {{ form["mark" ~ i] }}, Weightage {{loop.index}}: {{ form["weightage" ~ i] }}
 </p>
 {% endfor %}
-
+<p>
+    Percentage: {{percentage}}
+</p>
+<p>
+    Grade Point: {{grade}}
+</p>
 {% endblock %}
 
 {% block footer %}{% endblock %}
