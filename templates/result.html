@@ -1,4 +1,4 @@
-{% for i in range(numItems) %}
+{% for i in range((form|length / 2)|int) %}
 <p>
     Mark {{loop.index}}: {{ form["mark" ~ i] }}, Weightage {{loop.index}}: {{ form["weightage" ~ i] }}
 </p>

@@ -20,7 +20,7 @@ def form():
 
 @app.route("/calculate", methods=["POST"])
 def calculate():
-    return render_template("result.html", form=request.form, numItems = numItems)
+    return render_template("result.html", form=request.form)
 
 @app.errorhandler(404)
 def page_not_found(error):
