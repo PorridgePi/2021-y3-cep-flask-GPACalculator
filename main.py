@@ -15,11 +15,11 @@ def testing():
 def form():
     return render_template("form.html")
 
-@app.route("/calculate")
+@app.route("/calculate", methods=["POST"])
 def calculate():
-    mark1, mark2, mark3 = float(request.args["mark1"]), float(request.args["mark2"]), float(request.args["mark3"])
+    mark1, mark2, mark3 = float(request.form["mark1"]), float(request.form["mark2"]), float(request.form["mark3"])
 
-    weightage1, weightage2, weightage3 = float(request.args["weightage1"]), float(request.args["weightage2"]), float(request.args["weightage3"])
+    weightage1, weightage2, weightage3 = float(request.form["weightage1"]), float(request.form["weightage2"]), float(request.form["weightage3"])
 
     totalWeightage = weightage1 + weightage2 + weightage3
 
