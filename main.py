@@ -1,4 +1,5 @@
 import flask
+import json
 from flask import render_template, request
 
 app = flask.Flask(__name__)
@@ -18,28 +19,28 @@ def testing():
 def form():
     return render_template("form.html", numItems = numItems)
 
-@app.route("/calculate", methods=["POST"])
-def calculate():
-    data = request.form
-    
+def calcGPA(data):
     totalWeightage = 0
     rawPercentage = 0
 
-    for i in range(len(data) // 2):
+    for i in range((len(data)-1) // 2):
         mark = data[f"mark{i}"]
         weightage = data[f"weightage{i}"]
         if weightage.isdigit() and mark.isdigit():
             totalWeightage += int(weightage)
-    
-    for i in range(len(data) // 2):
+
+    for i in range((len(data)-1) // 2):
         mark = data[f"mark{i}"]
         weightage = data[f"weightage{i}"]
         if weightage.isdigit() and mark.isdigit():
             if int(mark) > 100:
-                return render_template("error.html", error="Mark must not higher than 100.")
+                return "Mark must not higher than 100."
             rawPercentage += int(mark)*int(weightage)
 
-    rawPercentage /= totalWeightage
+    try:
+        rawPercentage /= totalWeightage
+    except ZeroDivisionError:
+        return "Weightage must not be zero."
 
     totalPercentage = round(rawPercentage, 1)
 
@@ -62,7 +63,40 @@ def calculate():
     else:
         grade = "0.8"
 
-    return render_template("result.html", form=request.form, percentage=totalPercentage, grade=grade)
+    return totalPercentage, grade
+
+@app.route("/calculate", methods=["POST"])
+def calculate():
+    data = request.form
+
+    try:
+        with open("data.json", 'r') as f:
+            db = json.load(f)
+    except (IOError, TypeError, json.decoder.JSONDecodeError):
+        db = {}
+    
+    db[data["subject"]] = data
+
+
+    percentage = {}
+    grade = {}
+    form = {}
+
+    for subject in db:
+        data = db[subject]
+        try:
+            calcPercent, calcGrade = calcGPA(data)
+        except ValueError:
+            return render_template("error.html", error=calcGPA(data))
+        
+        form[subject] = data
+        percentage[subject] = calcPercent
+        grade[subject] = calcGrade
+
+    with open('data.json', 'w') as f:
+        json.dump(db, f, indent=4, sort_keys=True)
+
+    return render_template("result.html", form=form, percentage=percentage, grade=grade)
 
 @app.errorhandler(404)
 def page_not_found(error):

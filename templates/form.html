@@ -8,12 +8,16 @@
 
 {% block body %}
 <form action="{{ url_for('calculate') }}" method="post">
+    <div>
+        <h2>Subject</h2>
+        <input type="text" name="subject" size="10">
+    </div>
     <div class="row">
         <div class="column">
-            <h1>Mark</h1>
+            <h2>Mark</h2>
         </div>
         <div class="column">
-            <h1>Weightage</h1>
+            <h2>Weightage</h2>
         </div>
     </div>
 

@@ -7,17 +7,23 @@
 {% endblock %}
 
 {% block body %}
-{% for i in range((form|length / 2)|int) %}
+{% for subject, formContent in form.items() %}
+<h2>Subject: {{subject}}</h2>
+
+{% for i in range((formContent|length / 2)|int) %}
 <p>
-    Mark {{loop.index}}: {{ form["mark" ~ i] }}, Weightage {{loop.index}}: {{ form["weightage" ~ i] }}
+    Mark {{loop.index}}: {{ formContent["mark" ~ i] }}, Weightage {{loop.index}}: {{ formContent["weightage" ~ i] }}
 </p>
 {% endfor %}
+
 <p>
-    Percentage: {{percentage}}
+    Percentage: {{ percentage[subject] }}
 </p>
 <p>
-    Grade Point: {{grade}}
+    Grade Point: {{ grade[subject] }}
 </p>
+
+{% endfor %}
 {% endblock %}
 
 {% block footer %}{% endblock %}
