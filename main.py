@@ -17,6 +17,8 @@ def form():
 
 @app.route("/calculate", methods=["POST"])
 def calculate():
+    return render_template("result.html", form=request.form)
+
     mark1, mark2, mark3 = float(request.form["mark1"]), float(request.form["mark2"]), float(request.form["mark3"])
 
     weightage1, weightage2, weightage3 = float(request.form["weightage1"]), float(request.form["weightage2"]), float(request.form["weightage3"])
